@@ -1,5 +1,13 @@
 import { ActionType, CurrenciesActions } from '../actions';
 import { Currency } from '../api/currencies';
+import { HISTORY_LIMIT } from '../constants';
+
+export interface HistoryItem {
+  from: string;
+  to: string;
+  amount: number;
+  result: number;
+}
 
 /**
  * Currencies state interface
@@ -10,6 +18,7 @@ export interface CurrenciesState {
   currencies: Array<Currency>;
   conversionResult: number;
   isLoading: boolean;
+  history: Array<HistoryItem>;
 }
 
 /**
@@ -21,6 +30,7 @@ const initialState: CurrenciesState = {
   currencies: [],
   conversionResult: 0,
   isLoading: true,
+  history: [],
 };
 
 /**
@@ -48,6 +58,25 @@ export const currenciesReducer: (
       return {
         ...state,
         conversionResult: action.payload.conversionResult,
+      };
+    case ActionType.ADD_HISTORY_ITEM:
+      const updatedHistory = [
+        {
+          from: action.payload.from,
+          to: action.payload.to,
+          amount: action.payload.amount,
+          result: action.payload.result,
+        },
+        ...state.history,
+      ];
+
+      if (updatedHistory.length > HISTORY_LIMIT) {
+        updatedHistory.pop();
+      }
+
+      return {
+        ...state,
+        history: [...updatedHistory],
       };
     default:
       return state;

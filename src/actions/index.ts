@@ -1,10 +1,12 @@
 import { Currency } from '../api/currencies';
+import { HistoryItem } from '../reducers/currencies';
 
 export enum ActionType {
   FETCH_CURRENCIES = 'FETCH_CURRENCIES',
   SET_CURRENCIES = 'SET_CURRENCIES',
   FETCH_CONVERTED_AMOUNT = 'FETCH_CONVERTED_AMOUNT',
   SET_RESULT = 'SET_RESULT',
+  ADD_HISTORY_ITEM = 'ADD_HISTORY_ITEM',
 }
 
 export interface ConversionPayload {
@@ -36,8 +38,14 @@ interface SetResultAction {
   };
 }
 
+interface AddHistoryItemAction {
+  type: ActionType.ADD_HISTORY_ITEM;
+  payload: HistoryItem;
+}
+
 export type CurrenciesActions =
   | FetchCurrenciesAction
   | SetCurrenciesAction
   | FetchConvertedAmountAction
-  | SetResultAction;
+  | SetResultAction
+  | AddHistoryItemAction;

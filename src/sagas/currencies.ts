@@ -41,6 +41,16 @@ function* fetchConvertedAmount(action: FetchConvertedAmountAction) {
       type: ActionType.SET_RESULT,
       payload: { conversionResult: response.data.value },
     });
+
+    yield put({
+      type: ActionType.ADD_HISTORY_ITEM,
+      payload: {
+        from,
+        to,
+        amount,
+        result: response.data.value,
+      },
+    });
   } catch (error) {
     // @todo Add error handling
   }

@@ -10,6 +10,7 @@ import { getCurrencyByShortCode } from '../../utils';
 import Amount from '../Amount';
 import Output from '../Output/Output';
 import { DEFAULT_AMOUNT } from '../../constants';
+import History from '../History';
 
 interface CurrencyConverterProps {
   currencies: Currency[];
@@ -119,6 +120,7 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ currencies }) => 
           currencyToData={currencyToData}
         />
       )}
+      <History />
     </Container>
   );
 };

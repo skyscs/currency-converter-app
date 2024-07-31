@@ -1,5 +1,6 @@
 import { Currency } from '../api/currencies';
 import { RootState } from '../reducers';
+import { HistoryItem } from '../reducers/currencies';
 
 /**
  * Get loading state
@@ -18,3 +19,6 @@ export const getCurrencies: (state: RootState) => Array<Currency> = (state: Root
  */
 export const getConversionResult: (state: RootState) => number = (state: RootState) =>
   state.currencies.conversionResult;
+
+export const getHistory: (state: RootState) => Array<HistoryItem> = (state: RootState) =>
+  state.currencies.history;

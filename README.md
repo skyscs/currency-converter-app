@@ -170,7 +170,7 @@ Runs the formatter to format the codebase.
 │   ├── store
 │   │   └── index.ts
 │   ├── tests
-│   │   ├── App.test.tsx
+│   │   ├── App.test.tsx.bak
 │   │   └── store.tsx
 │   └── utils
 │       └── index.ts
